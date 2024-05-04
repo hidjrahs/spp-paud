@@ -9,63 +9,7 @@
         </h1>
     </div>
     <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Transaksi</h3>
-                </div>
-                @if(session()->has('msg'))
-                <div class="card-alert alert alert-{{ session()->get('type') }}" id="message" style="border-radius: 0px !important">
-                    @if(session()->get('type') == 'success')
-                        <i class="fe fe-check mr-2" aria-hidden="true"></i>
-                    @else
-                        <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> 
-                    @endif
-                        {{ session()->get('msg') }}
-                </div>
-                @endif
-                <div class="card-body">
-                    <form action="{{ route('keuangan.store') }}" method="post">
-                        @if($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach($errors->all() as $error)
-                                    {{ $error }}<br>
-                                @endforeach
-                            </div>
-                        @endif
-                        <div class="row">
-                            <div class="col-12">
-                                @csrf
-                                <div class="form-group">
-                                    <label class="form-label">Keperluan</label>
-                                    <div class="selectgroup w-100">
-                                        <label class="selectgroup-item">
-                                        <input type="radio" name="keperluan" value="in" class="selectgroup-input">
-                                        <span class="selectgroup-button">Catat Pemasukan</span>
-                                        </label>
-                                        <label class="selectgroup-item">
-                                        <input type="radio" name="keperluan" value="out" class="selectgroup-input">
-                                        <span class="selectgroup-button">Catat Pengeluaran</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group" style="display:none" id="form-jumlah">
-                                    <label class="form-label">Jumlah</label>
-                                    <input type="number" name="jumlah" id="jumlah" class="form-control" min='100' required>
-                                </div>
-                                <div class="form-group" style="display:none" id="form-keterangan">
-                                    <label class="form-label">Keterangan</label>
-                                    <textarea name="keterangan" id="keterangan" rows="3" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <button id="submit" class="btn btn-primary ml-auto" style="display:none">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+
         <div class="col-12">
             <div class="card">
                 <div class="card-header">

@@ -22,6 +22,15 @@ class TabunganController extends Controller
             'tabungan' => $tabungan,
         ]);
     }
+    public function penarikan()
+    {
+        $siswa = Siswa::orderBy('created_at','desc')->get();
+        $tabungan = Tabungan::orderBy('created_at','desc')->paginate(10);
+        return view('tabungan.penarikan', [
+            'siswa' => $siswa,
+            'tabungan' => $tabungan,
+        ]);
+    }
 
     public function transaksiCetak($id)
     {
@@ -98,7 +107,7 @@ class TabunganController extends Controller
                 'msg' => 'terjadi kesalahan'
             ]);
         }
-        
+
     }
 
     public function export()

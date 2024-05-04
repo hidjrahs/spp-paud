@@ -8,14 +8,15 @@
                             <i class="fe fe-home"></i> Dashboard
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a href="{{ route('spp.index') }}" class="nav-link {{ set_active(['spp.*'], 'active') }}">
-                            <i class="fe fe-repeat"></i> Transaksi SPP
+                            <a href="{{ route('tabungan') }}" class="nav-link {{ set_active(['tabungan'], 'active') }}">
+                            <i class="fe fe-repeat"></i> Menabung
                         </a>
                     </li>
                     <li class="nav-item">
-                            <a href="{{ route('tabungan.index') }}" class="nav-link {{ set_active(['tabungan.*'], 'active') }}">
-                            <i class="fe fe-repeat"></i> Tabungan
+                            <a href="{{ route('penarikan') }}" class="nav-link {{ set_active(['penarikan'], 'active') }}">
+                            <i class="fe fe-repeat"></i> Penarikan
                         </a>
                     </li>
                     <li class="nav-item">
@@ -23,11 +24,7 @@
                             <i class="fe fe-repeat"></i> Keuangan
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('tagihan.index') }}" class="nav-link {{ set_active(['tagihan.*'], 'active') }}">
-                            <i class="fe fe-box"></i> Tagihan
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('siswa.index') }}" class="nav-link {{ set_active(['siswa.*'], 'active') }}">
                             <i class="fe fe-users"></i> Siswa
@@ -43,11 +40,7 @@
                             <i class="fe fe-box"></i> Periode
                         </a>
                     </li>
-                    <li class="nav-item">
-                            <a href="{{ route('kuitansi.index') }}" class="nav-link {{ set_active(['kuitansi.*'], 'active') }}">
-                            <i class="fe fe-folder"></i> Kuitansi
-                        </a>
-                    </li>
+
                     @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'SuperAdmin')
                     <li class="nav-item">
                             <a href="{{ route('user.index') }}" class="nav-link {{ set_active(['user.*'], 'active') }}">
@@ -55,11 +48,7 @@
                         </a>
                     </li>
                     @endif
-                    <li class="nav-item">
-                        <a href="{{ route('buku.panduan') }}" class="nav-link {{ set_active(['buku.*'], 'active') }}">
-                        <i class="fe fe-book"></i> Buku Panduan
-                    </a>
-                </li>
+
                 </ul>
             </div>
         </div>

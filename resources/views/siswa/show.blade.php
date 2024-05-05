@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <p><b>Kelas</b> : {{$siswa->kelas->nama}} </p>
                     <p>
-                        <b>Nama</b> : {{$siswa->nama}} 
+                        <b>Nama</b> : {{$siswa->nama}}
                         @if($siswa->is_yatim)
                             <span class="tag tag-green">Yatim</span>
                         @endif
@@ -25,26 +25,26 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-6">
+        <div class="col-12 col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Tabungan</h3>
                     @if($saldo != '0')
-                    <div class="card-options"> 
+                    <div class="card-options">
                         <a href="{{ route('tabungan.cetak', $siswa->id) }}" target="_blank" class="btn btn-primary mr-1">Cetak</a>
                         <a href="{{ route('tabungan.siswa.export', $siswa->id) }}" target="_blank" class="btn btn-primary">Export</a>
                     </div>
                     @endif
                 </div>
                 <div class="card-body">
-                    <p><b>Saldo : </b>IDR. {{$saldo}}</p>
+                    <p><b>Saldo : </b>Rp{{$saldo}}</p>
                     <table class="table card-table table-hover table-vcenter text-wrap">
                         <tr>
                             <th>Tanggal</th>
                             <th>KD</th>
                             <th>Jumlah</th>
                             <th>Keterangan</th>
-                        </tr> 
+                        </tr>
                         @foreach($tabungan as $item)
                         <tr>
                             <td>{{ $item->created_at->format('d-m-Y') }}</td>
@@ -55,7 +55,7 @@
                                     Penarikan
                                 @endif
                             </td>
-                            <td style="min-width: 100px">IDR. {{ format_idr($item->jumlah) }}</td>
+                            <td style="min-width: 100px">Rp{{ format_idr($item->jumlah) }}</td>
                             <td style="max-width: 100px">{{ $item->keperluan }}</td>
                         </tr>
                         @endforeach
@@ -70,50 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Tagihan SPP</h3>
-                    @if(!$siswa->is_yatim)
-                    <div class="card-options">
-                        <input class="form-control mr-2" type="text" name="dates" style="max-width: 200px" id="daterange" value="{{ now()->subDay(7)->format('m-d-Y')." - ".now()->format('m-d-Y') }}">
-                        <button id="btn-cetak-spp" class="btn btn-primary mr-1" value="{{ $siswa->id }}">Cetak</button>
-                        <button id="btn-export-spp" class="btn btn-primary" value="{{ $siswa->id }}">Export</button>
-                    </div>
-                    @endif
-                </div>
-                <div class="card-body">
-                    @if($siswa->is_yatim)
-                        <b>Siswa/Siswi Yatim biaya Gratis</b>
-                    @else
-                    <table class="table card-table table-hover table-vcenter text-wrap">
-                        <tr>
-                            <th>Nama Tagihan</th>
-                            <th>Total</th>
-                            <th>Lunas</th>
-                            <th>Tanggal</th>
-                            <th>Keterangan</th>
-                        </tr> 
-                        @foreach($tagihan as $item)
-                        <tr>
-                            <td>{{ $item['nama'] }}</td>
-                            <td>{{ $item['total'] }}</td>
-                            <td>
-                                @if($item['is_lunas'])
-                                    <span class="tag tag-green">Lunas</span>
-                                @else
-                                    <span class="tag tag-purple">Belum</span>
-                                @endif 
-                            </td>
-                            <td>{{ $item['created_at'] }}</td>
-                            <td>{{ $item['keterangan'] }}</td>
-                        </tr>
-                        @endforeach
-                    </table>
-                    @endif
-                </div>
-            </div>
-        </div>
+
     </div>
 @endsection
 @section('css')
@@ -132,11 +89,11 @@
             form.setAttribute("method", "post");
             form.setAttribute("action", "{{ route('spp.print') }}/" + this.value);
             form.setAttribute("target", "_blank");
-            
+
             var token = document.createElement("input");
             token.setAttribute("name", "_token");
             token.setAttribute("value", "{{csrf_token()}}");
-            
+
             var dateForm = document.createElement("input");
             dateForm.setAttribute("name", "dates");
             dateForm.setAttribute("value", $('#daterange').val());
@@ -156,11 +113,11 @@
             form.setAttribute("method", "post");
             form.setAttribute("action", "{{ route('spp.export') }}/" + this.value);
             form.setAttribute("target", "_blank");
-            
+
             var token = document.createElement("input");
             token.setAttribute("name", "_token");
             token.setAttribute("value", "{{csrf_token()}}");
-            
+
             var dateForm = document.createElement("input");
             dateForm.setAttribute("name", "dates");
             dateForm.setAttribute("value", $('#daterange').val());

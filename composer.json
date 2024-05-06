@@ -9,14 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.2.0",
-        "laravel/ui": "*",
-        "maatwebsite/excel": "*",
+        "doctrine/dbal": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^10.0",
+        "laravel/passport": "^11.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.5",
-        "doctrine/dbal": "^3.0",
-        "laravel/passport": "^11.0"
+        "laravel/ui": "*",
+        "livewire/livewire": "^2.10",
+        "maatwebsite/excel": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

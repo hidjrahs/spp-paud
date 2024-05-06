@@ -19,12 +19,13 @@
         "laravel/passport": "^11.0"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "*",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^7.0",
-        "phpunit/phpunit": "^10.0"
+        "phpunit/phpunit": "^10.0",
+        "saravanasai/laravel-hopeui": "^2.0",
+        "spatie/laravel-ignition": "*"
     },
     "minimum-stability": "stable",
     "config": {
@@ -43,6 +44,7 @@
         },
         "classmap": [
             "database/seeds",
+            "database/seeders",
             "database/factories"
         ],
         "files": [

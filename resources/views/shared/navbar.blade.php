@@ -41,13 +41,20 @@
                         </a>
                     </li>
 
-                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'SuperAdmin')
+                    @if(Auth::user() && (Auth::user()->role == 'Admin' || Auth::user()->role == 'SuperAdmin'))
                     <li class="nav-item">
                             <a href="{{ route('user.index') }}" class="nav-link {{ set_active(['user.*'], 'active') }}">
                             <i class="fe fe-box"></i> Pengguna
                         </a>
                     </li>
+                    @else
+                    <li class="nav-item">
+                        <a href="{{ route('user.index') }}" class="nav-link {{ set_active(['user.*'], 'active') }}">
+                        <i class="fe fe-box"></i> Pengguna
+                    </a>
+                </li>
                     @endif
+
 
                 </ul>
             </div>

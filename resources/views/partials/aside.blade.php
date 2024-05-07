@@ -13,7 +13,7 @@
                     transform="rotate(45 10.5562 -0.556152)" fill="currentColor" />
             </svg>
             <!--logo End-->
-            <h4 class="logo-title">Sai Starter</h4>
+            <h4 class="logo-title">{{ config('app.name') }}</h4>
         </a>
         <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
             <i class="icon">

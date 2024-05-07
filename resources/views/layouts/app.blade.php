@@ -23,9 +23,7 @@
 		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
 	<script src="{{ asset('assets/js/require.min.js')}}"></script>
 	<script>
-		requirejs.config({
-			baseUrl: '{{ route('web.index') }}'
-		});
+
 	</script>
 	<!-- Dashboard Core -->
 	<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
@@ -55,12 +53,12 @@
 									<span class="avatar"
 										style="background-image: url({{ asset("favicon.ico")}})"></span>
 									<span class="ml-2 d-none d-lg-block">
-										<span class="text-default">{{ Auth::user()->name }}</span>
-										<small class="text-muted d-block mt-1">{{ Auth::user()->role }}</small>
+										<span class="text-default">{{ Auth::user()->name ?? "Belum Login"}}</span>
+										<small class="text-muted d-block mt-1">{{ Auth::user()->role?? '' }}</small>
 									</span>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-									<a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id) }}">
+									<a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id ?? 0) ?? '#'}}">
 										<i class="dropdown-icon fe fe-user"></i> Ubah Profil
 									</a>
 									<a class="dropdown-item" href="{{ route('pengaturan.index') }}">
@@ -68,7 +66,7 @@
 									</a>
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 										@csrf
-									</form>	
+									</form>
 									<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 										<i class="dropdown-icon fe fe-log-out"></i> Keluar
 									</a>

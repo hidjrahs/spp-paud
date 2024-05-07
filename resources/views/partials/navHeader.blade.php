@@ -4,8 +4,7 @@
             <div class="flex-wrap d-flex justify-content-between align-items-center">
                 <div>
                     <h1>Hello {{ auth()->user()->name }}!</h1>
-                    <p>We are on a mission to help developers like you build successful projects for
-                        FREE.</p>
+                    <p>Suatu keharusan dan kewajiban untuk mencatat transaksi keuangan.</p>
                 </div>
             </div>
         </div>

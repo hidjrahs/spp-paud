@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\KeuanganController;
@@ -26,7 +27,6 @@ use App\Http\Controllers\TransaksiController;
 */
 
 // Route::prefix('spp')->group(function(){
-    Route::get('beranda', Dashboard::class)->name('spp.beranda');
     Auth::routes();
 
     Route::middleware(['auth:web'])->group(function(){
@@ -132,15 +132,17 @@ Route::get('/home', function () {
 
 Route::group(['prefix' => 'dashboard', 'as' => 'app.', 'middleware' => ['web','auth']], function () {
 
-    Route::get('home', function () {
-        return view('pages.dashboard');
-    })->name('home');
+    // Route::get('home', function () {
+    //     return view('pages.dashboard');
+    // })->name('home');
+    // Route::get('home', App\Http\Livewire\Pages\Dashboard::class)->name('home');
+    Route::get('home', App\Http\Livewire\Pages\Dashboard::class)->name('home');
 
     Route::get('user', function () {
         return view('pages.user');
     })->name('user');
 
-     Route::group(
+    Route::group(
         ['prefix' => 'settings', 'as' => 'setting.'],
         function () {
 
@@ -151,7 +153,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'app.', 'middleware' => ['web','a
                         return view('pages.profile');
                     }
             )->name('my-profile');
-            
+
             Route::get(
                 'change-password',
                 function () {
@@ -167,6 +169,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'app.', 'middleware' => ['web','a
 
 Route::group(['prefix' => 'authentication', 'as' => 'auth.', 'middleware' => 'web'], function () {
 
+    // Route::get('beranda', Dashboard::class)->name('dash.beranda');
     Route::post('logout', function () {
         Illuminate\Support\Facades\Auth::logout();
         return redirect()->route('login');

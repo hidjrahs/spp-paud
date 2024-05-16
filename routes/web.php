@@ -1,7 +1,9 @@
 <?php
 
 use App\Livewire\Login;
+use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LogOutController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -20,10 +22,11 @@ use Illuminate\Support\Facades\Route;
 // Route::prefix('spp')->group(function(){
 // Auth::routes();
 
-Route::get('/', Login::class)->middleware('guest');
-// Route::middleware('auth')->group(function() {
-//     Route::get('dashboard', Dashboard::class)->name('dashboard');
-// });
+Route::get('/', \App\Livewire\Login::class)->name('login')->middleware('guest');
+Route::middleware('auth')->group(function() {
+    Route::get('dashboard', Dashboard::class)->name('dashboard');
+    Route::get('logout', LogOutController::class)->name('logout');
+});
 // Route::middleware(['auth:web'])->group(function(){
 
 //     Route::controller(HomeController::class)->group(function(){

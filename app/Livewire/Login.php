@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -12,38 +14,42 @@ use Illuminate\Validation\ValidationException;
 // use Livewire\Attributes\Rule;
 // use Livewire\Attributes\Layout;
 // use Illuminate\Support\Facades\Auth;
-// use Illuminate\Validation\ValidationException;
-
+//
 #[Layout('layouts.app')]
 class Login extends Component
 {
     #[Rule('required', 'email')]
     public string $email;
-    #[Rule('required')]
+    #[Rule('required', 'min:4', 'max:12')]
     public string $password;
     public function login()
     {
-        dd('login    ' . $this->email . ' ' . $this->password);
-        // $this->validate();
+        // dd('login    ' . $this->email . ' ' . $this->password);
+        $validated = $this->validate([
+            'email' => 'required|min:3',
+            'password' => 'required|min:3',
+        ]);
+        // dd($validated);
+        // dd($this->validate());
         // cara-1
-        // if (Auth::attemp([
+        // if (User::guard('web')->attemp([
         //     'email' => $this->email,
         //     'password' => $this->password])) {
-        //     return redirect()->route('home');
+        //     return redirect()->route('dashboard');
         // }
         // cara-2
-        //  if(Auth::attemp($this->only('email', 'password'))){
-        //     return redirect()->route('home');
+        // if (Auth::attemp($this->only('email', 'password'))) {
+        //     return redirect()->route('dashboard');
         // }
         // cara-3
-        //  if(Auth::attempt($this->validate())){
-        //     // return redirect()->route('home');
-        //     return "ok";
-        // }
 
-        // throw ValidationException::withMessages([
-        //     'email' => 'The provided credentials are incorrect.',
-        // ]);
+        if (Auth::attempt($this->validate())) {
+            return redirect()->route('dashboard');
+        }
+
+        throw ValidationException::withMessages([
+            'errors' => [trans('auth.failed')],
+        ]);
 
     }
     public function render()

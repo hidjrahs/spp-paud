@@ -1,62 +1,55 @@
-<!-- Login 13 - Bootstrap Brain Component -->
-<section class="py-3 py-md-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-          <div class="card border border-light-subtle rounded-3 shadow-sm">
-            <div class="card-body p-3 p-md-4 p-xl-5">
-              <div class="text-center mb-3">
+<div id="auth">
 
-              </div>
-              <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Sign in to your account</h2>
-              <form wire:submit="login">
-                <div class="row gy-2 overflow-hidden">
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input wire:model="email" type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
-                      <label for="email" class="form-label">Email</label>
-                      @error('email')
-                      <div class="invalid-feedback">
-                        {{ $message }}.
-                      </div>
-                      @enderror
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input wire:model="password" type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required>
-                      <label for="password" class="form-label">Password</label>
-                      @error('password')
-                      <div class="invalid-feedback">
-                        {{ $message }}.
-                      </div>
-                      @enderror
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="d-flex gap-2 justify-content-between">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="rememberMe" id="rememberMe">
-                        <label class="form-check-label text-secondary" for="rememberMe">
-                          Keep me logged in
-                        </label>
-                      </div>
-                      <a href="#!" class="link-primary text-decoration-none">Forgot password?</a>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="d-grid my-3">
-                      <button class="btn btn-primary btn-lg" type="submit">Log in</button>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <p class="m-0 text-secondary text-center">Don't have an account? <a href="#!" class="link-primary text-decoration-none">Sign up</a></p>
-                  </div>
+    <div class="row h-100">
+        <div class="col-lg-5 col-12">
+            <div id="auth-left">
+                <div class="auth-logo">
+                    <a href="index.html"><img src="{{ asset('mazer/assets/compiled/svg/logo.svg') }}" alt="Logo"></a>
                 </div>
-              </form>
+                <h1 class="auth-title">Log in.</h1>
+                <p class="auth-subtitle mb-5">Kewajiban untuk mencatat transaksi keuangan</p>
+                @foreach ($errors->all() as $error)
+
+                        <div class="text-danger"> {{ $error }}</div>
+
+                @endforeach
+                <form wire:submit="login">
+                    <div class="form-group position-relative has-icon-left mb-4">
+                        <input type="email" wire:model="email" class="form-control form-control-xl"
+                            placeholder="Email Anda">
+                        <div class="form-control-icon">
+                            <i class="bi bi-person"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group position-relative has-icon-left mb-4">
+                        <input type="password" wire:model="password" class="form-control form-control-xl"
+                            placeholder="Password">
+                        <div class="form-control-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                    </div>
+                    <div class="form-check form-check-lg d-flex align-items-end">
+                        <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label text-gray-600" for="flexCheckDefault">
+                            Keep me logged in
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Masuk</button>
+                </form>
+                <div class="text-center mt-5 text-lg fs-4">
+                    <p class="text-gray-600">Don't have an account? <a href="auth-register.html" class="font-bold">Sign
+                            up</a>.</p>
+                    <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+        <div class="col-lg-7 d-none d-lg-block">
+            <div id="auth-right">
+
+            </div>
+        </div>
     </div>
-  </section>
+
+</div>

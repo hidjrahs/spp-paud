@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TabunganController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Http\Request;
 
 /*
@@ -11,13 +14,12 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('saldo/{siswa?}','SiswaController@getSaldo')->name('api.getsaldo');
-Route::post('menabung/{siswa?}', 'TabunganController@menabung')->name('api.menabung');
-Route::get('tagihan/{siswa?}','TransaksiController@tagihan')->name('api.gettagihan');
-Route::post('transaksi-spp/{siswa?}','TransaksiController@store')->name('api.tagihan');
+Route::get('saldo/{siswa?}', [SiswaController::class, 'getSaldo'])->name('api.getsaldo');
+Route::post('menabung/{siswa?}', [TabunganController::class, 'menabung'])->name('api.menabung');
+Route::get('tagihan/{siswa?}', [TransaksiController::class, 'tagihan'])->name('api.gettagihan');
+Route::post('transaksi-spp/{siswa?}', [TransaksiController::class, 'store'])->name('api.transaksi.spp');

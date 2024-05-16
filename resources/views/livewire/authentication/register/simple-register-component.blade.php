@@ -24,12 +24,12 @@
                             </a>
                             <h2 class="mb-2 text-center">Sign Up</h2>
                             <p class="text-center">Create your account.</p>
-                            <form wire:submit.prevent="register">
+                            <form wire:submit="register">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="full-name" class="form-label">Full Name</label>
-                                            <input wire:model.debounce.500ms="fullName" type="text"
+                                            <input wire:model.live.debounce.500ms="fullName" type="text"
                                                 class="form-control" id="full-name" placeholder=" ">
                                             @error('fullName')
                                                 <div class="text-danger m-1">{{ $message }}</div>
@@ -39,7 +39,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="email" class="form-label">Email</label>
-                                            <input wire:model.debounce.500ms="email" type="email"
+                                            <input wire:model.live.debounce.500ms="email" type="email"
                                                 class="form-control" id="email" placeholder=" ">
                                             @error('email')
                                                 <div class="text-danger m-1">{{ $message }}</div>
@@ -49,7 +49,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="password" class="form-label">Password</label>
-                                            <input wire:model.debounce.500ms="password" type="password"
+                                            <input wire:model.live.debounce.500ms="password" type="password"
                                                 class="form-control" id="password" placeholder=" ">
                                             @error('password')
                                                 <div class="text-danger m-1">{{ $message }}</div>
@@ -60,7 +60,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="passwordconfrim" class="form-label">Confirm Password</label>
-                                            <input wire:model.debounce.500ms="password_confirmation" type="password"
+                                            <input wire:model.live.debounce.500ms="password_confirmation" type="password"
                                                 class="form-control" id="" placeholder=" ">
                                             @error('password_confirmation')
                                                 <div class="text-danger m-1">{{ $message }}</div>
@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="col-lg-12 d-flex justify-content-between">
                                         <div class="form-check mb-3">
-                                            <input wire:model="rememberMe" type="checkbox" class="form-check-input"
+                                            <input wire:model.live="rememberMe" type="checkbox" class="form-check-input"
                                                 id="customCheck1">
                                             <label class="form-check-label" for="customCheck1">Remember Me</label>
                                         </div>

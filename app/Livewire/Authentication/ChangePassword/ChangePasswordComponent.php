@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Authentication\ChangePassword;
+namespace App\Livewire\Authentication\ChangePassword;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;

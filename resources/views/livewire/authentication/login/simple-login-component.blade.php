@@ -29,12 +29,12 @@
                                     {{ session('error') }}
                                 </div>
                             @endif
-                            <form wire:submit.prevent="login">
+                            <form wire:submit="login">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group ">
                                             <label for="email" class="form-label">Email </label>
-                                            <input wire:model.debounce.500ms="email" type="email"
+                                            <input wire:model.live.debounce.500ms="email" type="email"
                                                 class="form-control" id="email" aria-describedby="email"
                                                 placeholder="Email">
                                             @error('email')
@@ -45,7 +45,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="password" class="form-label">Password</label>
-                                            <input wire:model.debounce.500ms="password" type="password"
+                                            <input wire:model.live.debounce.500ms="password" type="password"
                                                 class="form-control" id="password" aria-describedby="password"
                                                 placeholder="Password">
                                             @error('password')
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col-lg-12 d-flex justify-content-between">
                                         <div class="form-check mb-3">
-                                            <input wire:model="rememberMe" type="checkbox" class="form-check-input"
+                                            <input wire:model.live="rememberMe" type="checkbox" class="form-check-input"
                                                 id="customCheck1">
                                             <label class="form-check-label" for="customCheck1">Remember Me</label>
                                         </div>

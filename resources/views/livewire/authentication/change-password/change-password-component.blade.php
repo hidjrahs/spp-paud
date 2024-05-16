@@ -18,7 +18,7 @@
                             <span class="text-danger">*{{ $message }}</span>
                         @enderror
                     </label>
-                    <input wire:model="oldPassword" type="password" class="form-control" id="old_password">
+                    <input wire:model.live="oldPassword" type="password" class="form-control" id="old_password">
 
                 </div>
                 <div class="form-group">
@@ -26,14 +26,14 @@
                             <span class="text-danger">*{{ $message }}</span>
                         @enderror
                     </label>
-                    <input wire:model="newPassword" type="password" class="form-control" id="new_password">
+                    <input wire:model.live="newPassword" type="password" class="form-control" id="new_password">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="old_password">New Password Confrim:@error('newPasswordConfrim')
                             <span class="text-danger">*{{ $message }}</span>
                         @enderror
                     </label>
-                    <input wire:model="newPasswordConfrim" type="password" class="form-control"
+                    <input wire:model.live="newPasswordConfrim" type="password" class="form-control"
                         id="new_password_confrim">
                 </div>
                 <button wire:click="changePassword" type="button" class="btn btn-sm btn-primary float-end">Change

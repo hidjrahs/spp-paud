@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="flex-wrap d-flex justify-content-between align-items-center">
                 <div>
-                    <h1>Hello {{ auth()->user()->name }}!</h1>
+                    {{-- <h1>Hello {{ auth()->user()->name }}!</h1> --}}
                     <p>Suatu keharusan dan kewajiban untuk mencatat transaksi keuangan.</p>
                 </div>
             </div>

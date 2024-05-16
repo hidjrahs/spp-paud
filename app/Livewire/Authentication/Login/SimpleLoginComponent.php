@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Authentication\Login;
+namespace App\Livewire\Authentication\Login;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-
+#[Layout('layouts.app-bootstrap53')]
 class SimpleLoginComponent extends Component
 {
     public $email;
@@ -50,8 +50,6 @@ class SimpleLoginComponent extends Component
 
     public function render()
     {
-        return view('livewire.authentication.login.simple-login-component')
-            ->extends('layouts.auth')
-            ->section('content');
+        return view('livewire.authentication.login.simple-login-component');
     }
 }

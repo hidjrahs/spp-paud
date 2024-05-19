@@ -15,7 +15,7 @@ class CreatePengaturan extends Migration
     {
         Schema::create('pengaturan', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama')->default('PAUD TERPADU MUSTIKA ILMU');
+            $table->string('nama')->default('TABUNGAN ANANDA');
             $table->string('logo')->default('logo.png');
             $table->timestamps();
         });

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tabungan extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasFactory;
 
     protected $table = 'tabungan';
 
@@ -16,14 +17,16 @@ class Tabungan extends Model
         'tipe',
         'jumlah',
         'saldo',
-        'keperluan'
+        'keperluan',
     ];
 
-    public function siswa(){
-        return $this->belongsTo('App\Models\Siswa','siswa_id','id');
+    public function siswa()
+    {
+        return $this->belongsTo('App\Models\Siswa', 'siswa_id', 'id');
     }
 
-    public function keuangan(){
-        return $this->hasOne('App\Models\Keuangan','tabungan_id','id');
+    public function keuangan()
+    {
+        return $this->hasOne('App\Models\Keuangan', 'tabungan_id', 'id');
     }
 }

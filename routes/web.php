@@ -25,6 +25,7 @@ use App\Http\Controllers\LogOutController;
 Route::get('/', \App\Livewire\Login::class)->name('login')->middleware('guest');
 Route::middleware('auth')->group(function() {
     Route::get('dashboard', Dashboard::class)->name('dashboard');
+    Route::get('menabung', \App\Livewire\Tabungan::class)->name('menabung');
     Route::get('logout', LogOutController::class)->name('logout');
 });
 // Route::middleware(['auth:web'])->group(function(){

@@ -1,6 +1,8 @@
 <?php
 
+
 use Illuminate\Database\Seeder;
+use Database\Seeders\SiswaSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Siswa::factory(100)->create();
         // $this->call([UsersTableSeeder::class]);
+        $this->call([SiswaSeeder::class]);
     }
 }

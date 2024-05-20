@@ -23,7 +23,6 @@
 <body>
     <script src="{{ asset('mazer/assets/static/js/initTheme.js') }}"></script>
     {{ $slot }}
-    {{-- <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script> --}}
     <script src="{{ asset('mazer/assets/static/js/components/dark.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/horizontal-layout.js') }}"></script>
     <script src="{{ asset('mazer/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
@@ -34,10 +33,11 @@
     <script src="{{ asset('mazer/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/dashboard.js') }}"></script>
 
-    {{-- <script src="{{ asset('mazer/assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script> --}}
+    <script src="{{ asset('mazer/assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
     <!-- Include Choices JavaScript (latest) -->
-    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script> --}}
     <!-- Or versioned -->
+    {{-- <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script> --}}
 
     <script src="{{ asset('mazer/assets/static/js/pages/form-element-select.js') }}"></script>
 {{-- @stack('scripts') --}}

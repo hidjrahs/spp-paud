@@ -1,11 +1,12 @@
 <div id="app">
     <div id="main" class="layout-horizontal">
-        <x-navigations-menu/>
+        <x-navigations-menu />
 
         <div class="content-wrapper container">
 
             <div class="page-heading">
                 <h3>Data Tabungan</h3>
+                @dump($tabungan)
             </div>
             <div class="page-content">
                 <section class="row">
@@ -50,26 +51,35 @@
                             <div class="col-6 col-lg-3 col-md-6 text-center">
                                 <div class="card">
                                     <div class="card-body">
+                                        <a href="{{ route('menabung') }}"
+                                            class="btn icon icon-left btn-outline-info"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="share-square">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
+                                                </path>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
+                                                </path>
+                                            </svg> Menabung</a>
 
-                                        <div class="buttons">
-
-                                            <a href="{{ route('menabung') }}" class="btn btn-outline-info">Menabung</a>
-
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-lg-3 col-md-6 text-center">
                                 <div class="card">
                                     <div class="card-body">
-
-                                        <div class="buttons">
-
-
-                                            <a href="#" class="btn btn-outline-warning">Mengambil</a>
-
-                                        </div>
+                                        <a href="#" class="btn icon icon-left btn-outline-warning"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-external-link">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
+                                                </path>
+                                                <polyline points="15 3 21 3 21 9"></polyline>
+                                                <line x1="10" y1="14" x2="21" y2="3">
+                                                </line>
+                                            </svg> Penarikan</a>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +165,7 @@
                             <div class="col-12 col-xl-8">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Latest Comments</h4>
+                                        <h4>Mutasi Terakhir</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -163,40 +173,28 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Name</th>
-                                                        <th>Comment</th>
+                                                        <th>Keterangan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                    <img
-                                                                        src="{{ asset('mazer/assets/compiled/jpg/5.jpg') }}">
+                                                    @foreach ($tabungan as $key => $item)
+                                                        <tr>
+                                                            <td class="col-3">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar avatar-md">
+                                                                        <img
+                                                                            src="{{ asset('mazer/assets/compiled/jpg/5.jpg') }}">
+                                                                    </div>
+                                                                    <p class="font-bold ms-3 mb-0">{{ $item->siswa->nama }}
+                                                                    </p>
                                                                 </div>
-                                                                <p class="font-bold ms-3 mb-0">Cantik</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class=" mb-0">Congratulations on your graduation!</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                    <img
-                                                                        src="{{ asset('mazer/assets/compiled/jpg/2.jpg') }}">
-                                                                </div>
-                                                                <p class="font-bold ms-3 mb-0">Ganteng</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class=" mb-0">Wow amazing design! Can you make another
-                                                                tutorial for
-                                                                this design?</p>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                            <td class="col-auto">
+                                                                <p class=" mb-0">Menabung sebanyak Rp {{ $item->jumlah }}
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -287,4 +285,3 @@
         </footer>
     </div>
 </div>
-

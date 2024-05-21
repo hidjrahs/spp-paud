@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Tabungan;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Siswa extends Model
 {
@@ -22,22 +23,29 @@ class Siswa extends Model
         'nama_wali',
         'telp_wali',
         'pekerjaan_wali',
-        'is_yatim'
+        'is_yatim',
     ];
 
-    public function kelas(){
-        return $this->hasOne('App\Models\Kelas','id','kelas_id');
+    public function kelas()
+    {
+        return $this->hasOne('App\Models\Kelas', 'id', 'kelas_id');
     }
 
-    public function transaksi(){
-        return $this->hasMany('App\Models\Transaksi','siswa_id','id');
+    public function transaksi()
+    {
+        return $this->hasMany('App\Models\Transaksi', 'siswa_id', 'id');
     }
 
-    public function role(){
-        return $this->hasMany('App\Models\Role','siswa_id','id');
+    public function role()
+    {
+        return $this->hasMany('App\Models\Role', 'siswa_id', 'id');
     }
 
-    public function tabungan(){
-        return $this->hasMany('App\Models\Tabungan','siswa_id','id');
+    // public function tabungan(){
+    //     return $this->hasMany('App\Models\Tabungan','siswa_id','id');
+    // }
+    public function tabungan()
+    {
+        return $this->hasMany(Tabungan::class, 'siswa_id', 'id');
     }
 }

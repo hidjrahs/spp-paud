@@ -26,6 +26,7 @@ Route::get('/', \App\Livewire\Login::class)->name('login')->middleware('guest');
 Route::middleware('auth')->group(function() {
     Route::get('dashboard', Dashboard::class)->name('dashboard');
     Route::get('menabung', \App\Livewire\Tabungan::class)->name('menabung');
+    Route::get('mengambil', \App\Livewire\Penarikan::class)->name('mengambil');
     Route::get('logout', LogOutController::class)->name('logout');
 });
 // Route::middleware(['auth:web'])->group(function(){

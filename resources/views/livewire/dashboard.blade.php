@@ -5,8 +5,9 @@
         <div class="content-wrapper container">
 
             <div class="page-heading">
+
                 <h3>Data Tabungan</h3>
-                @dump($tabungan)
+                {{-- @json($kel) --}}
             </div>
             <div class="page-content">
                 <section class="row">
@@ -69,7 +70,7 @@
                             <div class="col-6 col-lg-3 col-md-6 text-center">
                                 <div class="card">
                                     <div class="card-body">
-                                        <a href="#" class="btn icon icon-left btn-outline-warning"><svg
+                                        <a href="{{ route('mengambil') }}" class="btn icon icon-left btn-outline-warning"><svg
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -185,12 +186,16 @@
                                                                         <img
                                                                             src="{{ asset('mazer/assets/compiled/jpg/5.jpg') }}">
                                                                     </div>
-                                                                    <p class="font-bold ms-3 mb-0">{{ $item->siswa->nama }}
+                                                                    <p class="font-bold ms-3 mb-0">
+                                                                        {{ $item->siswa->nama }}
                                                                     </p>
                                                                 </div>
                                                             </td>
                                                             <td class="col-auto">
-                                                                <p class=" mb-0">Menabung sebanyak Rp {{ $item->jumlah }}
+                                                                <p class=" mb-0">
+                                                                    {{ $item->tipe == 'in' ? 'Menabung ' : 'Penarikan ' }}
+                                                                    sebanyak Rp {{ $item->jumlah }}. Saldo Rp
+                                                                    {{ format_idr($item->saldo) }}
                                                                 </p>
                                                             </td>
                                                         </tr>
@@ -223,33 +228,41 @@
                                 <h4>Recent Messages</h4>
                             </div>
                             <div class="card-content pb-4">
-                                <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg">
-                                        <img src="{{ asset('mazer/assets/compiled/jpg/4.jpg') }}">
+
+
+                                @foreach ($kelas as $kelasItem)
+                                    @php
+                                        $totalTabungan = $kelasItem->siswa->sum(function ($siswa) {
+                                            $in = $siswa->tabungan->where('tipe', 'in')->sum('jumlah');
+                                            $out = $siswa->tabungan->where('tipe', 'out')->sum('jumlah');
+                                            return $in - $out;
+                                        });
+                                    @endphp
+                                    <div class="recent-message d-flex px-4 py-3">
+                                        <div class="avatar avatar-lg">
+                                            <img src="{{ asset('mazer/assets/compiled/jpg/4.jpg') }}">
+                                        </div>
+                                        <div class="name ms-4">
+                                            <h5 class="mb-1">{{ $kelasItem->nama }}</h5>
+                                            {{ $kelasItem->total_saldo }}
+                                            {{ $totalTabungan }}
+
+                                        </div>
                                     </div>
-                                    <div class="name ms-4">
-                                        <h5 class="mb-1">Hank Schrader</h5>
-                                        <h6 class="text-muted mb-0">@johnducky</h6>
-                                    </div>
-                                </div>
-                                <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg">
-                                        <img src="{{ asset('mazer/assets/compiled/jpg/5.jpg') }}">
-                                    </div>
-                                    <div class="name ms-4">
-                                        <h5 class="mb-1">Dean Winchester</h5>
-                                        <h6 class="text-muted mb-0">@imdean</h6>
-                                    </div>
-                                </div>
-                                <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg">
-                                        <img src="{{ asset('mazer/assets/compiled/jpg/1.jpg') }}">
-                                    </div>
-                                    <div class="name ms-4">
-                                        <h5 class="mb-1">John Dodol</h5>
-                                        <h6 class="text-muted mb-0">@dodoljohn</h6>
-                                    </div>
-                                </div>
+                                @endforeach
+
+                                {{-- @foreach ($kelas as $k)
+                                    @php
+                                        $totalTabungan = $k->siswa->sum(function ($siswa) {
+                                            return $siswa->tabungan->where('tipe', 'in')->sum('jumlah');
+                                        });
+                                    @endphp
+
+                                    <p>Total tabungan siswa di kelas {{ $k->nama }} (tipe 'in'):
+                                        {{ $totalTabungan }}</p>
+                                @endforeach --}}
+
+
                                 <div class="px-4">
                                     <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
                                         Conversation</button>
